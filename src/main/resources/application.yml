@@ -1,0 +1,53 @@
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://10.187.38.192:8761/eureka/,http://10.187.11.188:8761/eureka/
+#      defaultZone: http://10.10.163.85:8761/eureka/
+      defaultZone: http://120.77.224.50:8761/eureka/
+#      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8098
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 3000
+spring:
+  application:
+    name: servicefeign
+  cloud:  
+    config:  
+      enabled: true  
+      server:  
+        #svn:  
+          #uri: svn://119.23.241.232/repos/TCD/tags/  
+          #username: springcloud  
+          #password: springcloud 
+        #default-label: config  
+        git:  
+          uri: https://github.com/qiguliuxing/tcd/
+          searchPaths: config
+      label: master 
+  #profiles:  
+    #active: subversion  
+feign:
+  hystrix:
+    enabled: false   
+hystrix:
+  threadpool:
+    default:
+      coreSize:50  
+  command:  
+    default:  
+      execution:
+        timeout:  
+          enabled: true   
+        isolation:  
+          thread:  
+            timeoutInMilliseconds: 60000 #缺省为1000 
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  eureka:
+    enabled: true
+             
